@@ -9,6 +9,26 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 
+const firebaseConfig = {
+  "projectId":"ttz-dashboard-1",
+  "appId":"1:683453690922:web:98de1ad51e1bbb98a6bf53",
+  "storageBucket":"ttz-dashboard-1.appspot.com",
+  "apiKey":"AIzaSyCSLIDgWlcyzDV-iL9hSwJvmKPvwjMyiJA",
+  "authDomain":"ttz-dashboard-1.firebaseapp.com",
+  "messagingSenderId":"683453690922",
+  "measurementId":"G-CPS6XV2CWN"
+}
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideAnimationsAsync(), provideFirebaseApp(() => initializeApp({"projectId":"ttz-dashboard-1","appId":"1:683453690922:web:98de1ad51e1bbb98a6bf53","storageBucket":"ttz-dashboard-1.appspot.com","apiKey":"AIzaSyCSLIDgWlcyzDV-iL9hSwJvmKPvwjMyiJA","authDomain":"ttz-dashboard-1.firebaseapp.com","messagingSenderId":"683453690922","measurementId":"G-CPS6XV2CWN"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideDatabase(() => getDatabase())]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes), 
+    provideClientHydration(), 
+    provideAnimationsAsync(), 
+    provideAnimationsAsync(), 
+    provideFirebaseApp(() => initializeApp(firebaseConfig)), 
+    provideAuth(() => getAuth()), 
+    provideFirestore(() => getFirestore()), 
+    provideDatabase(() => getDatabase())
+  ]
 };
