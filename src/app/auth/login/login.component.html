@@ -12,7 +12,7 @@
   
         <div class="inputBox"> 
   
-         <input type="text" required> <i>Username</i> 
+         <input type="text" em required [(ngModel)]="email"> <i>Email</i> 
   
         </div> 
   
@@ -28,7 +28,7 @@
   
         <div class="inputBox"> 
   
-         <input type="submit" (click)="onSubmit()" value="Login"> 
+         <input type="submit" (click)="onLoginClick()" value="Login"> 
   
         </div> 
   

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -14,15 +14,20 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   currentRoute = "";
 
   constructor(private router: Router){
-    router.events.subscribe(event => 
-       {
-          this.currentRoute = (event as NavigationEnd).url
-       });
-}
+    
+  }
+
+  ngOnInit(): void {
+    this.router.events.subscribe(event => 
+      {
+         this.currentRoute = (event as NavigationEnd).url
+      });
+  }
+
   
   
 

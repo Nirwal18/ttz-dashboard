@@ -9,7 +9,12 @@ import { UserInterface } from "../interface/user.interface";
 }) 
 export class AuthService{
     fireAuth = inject(Auth)
-    //user$ = this.fireAuth.onAuthStateChanged(()=>{});
+    
+
+    constructor(){
+    }
+
+   
 
 
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
