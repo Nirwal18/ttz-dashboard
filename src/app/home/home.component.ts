@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { MatSidenavModule } from '@angular/material/sidenav'
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,6 +10,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
   imports: [
     RouterOutlet,
     NavBarComponent,
+    MatSidenavModule,
     FooterComponent
   ],
   templateUrl: './home.component.html',

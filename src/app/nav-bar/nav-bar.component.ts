@@ -1,13 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButton } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
   imports: [
     MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    CommonModule,
     MatButton,
     RouterLink
   ],

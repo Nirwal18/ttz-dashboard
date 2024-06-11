@@ -31,9 +31,9 @@ export class AppComponent implements OnInit{
       }
   });
 
-  if(this.authService.currentUserSig()?.email.length!>5){
-    this.navigateToHomePage()
-  }
+  // if(this.authService.currentUserSig()?.email.length!>5){
+  //   this.navigateToHomePage()
+  // }
 
   }
   public navigateToHomePage(){

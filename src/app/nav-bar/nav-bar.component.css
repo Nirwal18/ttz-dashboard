@@ -1,3 +1,14 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+
+.bottom-shadow{
+  /* box-shadow: 0px 0px 0px 2px #e6e6e6; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  z-index: 10;
+}
+
+.bottom-shadow>span{
+  margin-left: 10px;
+}
