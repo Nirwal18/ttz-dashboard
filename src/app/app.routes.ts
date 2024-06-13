@@ -4,6 +4,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './home/about/about.component';
+import { DeshboardComponent } from './home/deshboard/deshboard.component';
+import { GaListComponent } from './home/ga-list/ga-list.component'
 
 export const routes: Routes = [
 
@@ -13,6 +15,14 @@ export const routes: Routes = [
         component:HomeComponent,
         title:'TTZ GAS Console',
         children:[
+            {
+                path:'dashboard',
+                component: DeshboardComponent
+            },
+            {
+                path:'gaList',
+                component:GaListComponent
+            },
             {
                 path:'about',
                 component:AboutComponent,

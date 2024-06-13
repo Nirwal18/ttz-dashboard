@@ -1,11 +1,33 @@
+
+
 <app-nav-bar/>
 
-
-<mat-drawer-container class="example-container">
+<mat-drawer-container autosize>
     
-    <mat-drawer mode="side" opened [style.width]="'250px'">Drawer content</mat-drawer>
+    <mat-drawer mode="side" opened>
+   
+      <mat-nav-list>
+        <mat-list-item  routerLink="/home/dashboard" href="/home/dashboard" >
+          <mat-icon matListItemIcon>dashboard</mat-icon> <span>Dashboard</span>
+        </mat-list-item>
+        <mat-list-item >
+          <mat-icon matListItemIcon>supervisor_account</mat-icon> <span>Customer</span>
+        </mat-list-item>
 
-    <mat-drawer-content>Main content
+        <mat-list-item >
+          <mat-icon matListItemIcon>settings</mat-icon> <span>Settings</span>
+        </mat-list-item>
+
+        <mat-list-item >
+          <mat-icon matListItemIcon>analytics</mat-icon> <span>Analytics</span>
+        </mat-list-item>
+      
+
+      </mat-nav-list>
+
+    </mat-drawer>
+
+    <mat-drawer-content>
         <router-outlet></router-outlet>
   
     </mat-drawer-content>

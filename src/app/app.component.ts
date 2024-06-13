@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
               email: user?.email!,
               userName:user?.displayName!
           })
-          this.navigateToHomePage()
+         // this.navigateToHomePage()
       },
       complete:()=>{},
       error:()=>{

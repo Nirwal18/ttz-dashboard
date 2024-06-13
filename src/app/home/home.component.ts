@@ -2,15 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatSidenavModule } from '@angular/material/sidenav'
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+import {  NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
     NavBarComponent,
     MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
     FooterComponent
   ],
   templateUrl: './home.component.html',
