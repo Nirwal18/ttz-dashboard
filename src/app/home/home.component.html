@@ -1,10 +1,10 @@
 
 
-<app-nav-bar/>
+<app-nav-bar (menuClick)="sideNav.toggle()"/>
 
 <mat-drawer-container autosize>
     
-    <mat-drawer mode="side" opened>
+    <mat-drawer mode="side" #sideNav opened>
    
       <mat-nav-list>
         <mat-list-item  routerLink="/home/dashboard" href="/home/dashboard" >

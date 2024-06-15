@@ -1,7 +1,7 @@
 import { Injectable, inject, signal} from "@angular/core";
-import { Auth, user } from "@angular/fire/auth";
+import { Auth, authState, user } from "@angular/fire/auth";
 import { signInWithEmailAndPassword, signOut, updateCurrentUser } from "firebase/auth";
-import { Observable, from } from "rxjs";
+import { Observable, filter, from, map } from "rxjs";
 import { UserInterface } from "../interface/user.interface";
 
 @Injectable({
@@ -10,6 +10,8 @@ import { UserInterface } from "../interface/user.interface";
 export class AuthService{
     fireAuth = inject(Auth)
     
+    user$ = authState(this.fireAuth).pipe(filter(user  =>  user !== null), map(user  =>  user!));
+
 
     constructor(){
     }

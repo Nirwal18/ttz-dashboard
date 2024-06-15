@@ -1,0 +1,15 @@
+.row{
+    display: flex;
+    gap: 10px;
+
+    mat-form-field {
+      width: 100%;
+       
+    }
+}
+
+mat-dialog-actions{
+    button{
+        flex: 1;
+    }
+}

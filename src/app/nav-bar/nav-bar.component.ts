@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
@@ -20,5 +20,5 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-
+  @Output() menuClick = new EventEmitter<void>();
 }

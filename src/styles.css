@@ -4,6 +4,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
+.display-flex{
+  display: flex;
+}
+
+
 .img-Icon{
     width: 48px;
     height: 48px;

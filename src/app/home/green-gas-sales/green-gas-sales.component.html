@@ -1,6 +1,64 @@
-<p>green-gas-sales works!</p>
+<div class="display-flex padding-8px">
+  <span class="spacer-horizontal"></span>
+  <button mat-button (click)="displayAddDataDialog()">
+    <mat-icon>add</mat-icon>
+    Add data
+  </button>
+</div>
 
-<mat-list role="list">
- 
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bg">
 
-  </mat-list>
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Date Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <!-- TP Nagar Column -->
+  <ng-container matColumnDef="tpNagar">
+    <th mat-header-cell *matHeaderCellDef>TP Nagar</th>
+    <td mat-cell *matCellDef="let element"> {{element.tpNagar}} </td>
+  </ng-container>
+
+  <!-- Jeoi Mandi Column -->
+  <ng-container matColumnDef="jeoniMandi">
+    <th mat-header-cell *matHeaderCellDef>Jeoni Mandi</th>
+    <td mat-cell *matCellDef="let element"> {{element.jeoniMandi}} </td>
+  </ng-container>
+
+  <!-- Brij Auto Column -->
+  <ng-container matColumnDef="brijAuto">
+    <th mat-header-cell *matHeaderCellDef>Brij Auto</th>
+    <td mat-cell *matCellDef="let element"> {{element.brijAuto}} </td>
+  </ng-container>
+
+  <!-- Hariom Bodla Column -->
+  <ng-container matColumnDef="hariomBodla">
+    <th mat-header-cell *matHeaderCellDef>Hariom Bodla</th>
+    <td mat-cell *matCellDef="let element"> {{element.hariomBodla}} </td>
+  </ng-container>
+
+    <!-- Total consumption Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total Consumption</th>
+      <td mat-cell *matCellDef="let element"> {{element.tpNagar+element.jeoniMandi+element.brijAuto+element.hariomBodla | number:'1.0-2'}} SCM </td>
+    </ng-container>
+
+    <!-- Total consumption Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element"><button mat-icon-button (click)="onEditClick(element)"><mat-icon>edit</mat-icon></button></td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator #pagenator [pageSizeOptions]="[15, 30, 90]"
+showFirstLastButtons
+aria-label="Select page of periodic elements">
+</mat-paginator>
+

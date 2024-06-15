@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Add Green Gas data</h2>
+
+
+<form [formGroup]="formGrp" (ngSubmit)="onSubmit()">
+<mat-dialog-content>
+
+
+<div class="row">
+    <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>TP Nagar</mat-label>
+        <input matInput type="number" formControlName="tpNagar">
+      </mat-form-field>
+    
+
+    <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>Jeoni Mandi</mat-label>
+        <input matInput type="number" formControlName="jeoniMandi">
+      </mat-form-field>
+
+</div>
+
+
+<div class="row">
+
+    <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>Brij Auto</mat-label>
+        <input matInput type="number" formControlName = "brijAuto">
+      </mat-form-field>
+      
+
+    <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>Hariom Bodla</mat-label>
+        <input matInput type="number" formControlName = "hariomBodla">
+    </mat-form-field>
+
+</div>           
+              
+<mat-form-field class="example-form-field" appearance="outline">
+  <mat-label>Date</mat-label>
+  <input matInput type="date" formControlName = "date">
+</mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-flat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button mat-dialog-close cdkFocusInitial type="submit">Save</button>
+</mat-dialog-actions>
+
+</form>
