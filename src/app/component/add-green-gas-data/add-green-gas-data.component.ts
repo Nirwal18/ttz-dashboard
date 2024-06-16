@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -32,7 +32,7 @@ export class AddGreenGasDataComponent implements OnInit {
     jeoniMandi: 0,
     brijAuto: 0,
     hariomBodla: 0,
-    date:''
+    date: new FormControl<string>('',[Validators.required])
   });
 
 

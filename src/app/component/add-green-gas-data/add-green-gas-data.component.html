@@ -38,13 +38,17 @@
 <mat-form-field class="example-form-field" appearance="outline">
   <mat-label>Date</mat-label>
   <input matInput type="date" formControlName = "date">
+  @if (formGrp.controls.date.errors?.['required']) {
+    <mat-error>Please enter a valid date</mat-error>
+  }
+
 </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-flat-button mat-dialog-close>Cancel</button>
-  <button mat-flat-button mat-dialog-close cdkFocusInitial type="submit">Save</button>
+  <button mat-flat-button  cdkFocusInitial type="submit">Save</button>
 </mat-dialog-actions>
 
 </form>

@@ -1,0 +1,53 @@
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bg">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+  
+    <!-- TP Nagar Column -->
+    <ng-container matColumnDef="industrial">
+      <th mat-header-cell *matHeaderCellDef>Industrial</th>
+      <td mat-cell *matCellDef="let element"> {{element.industrial}} </td>
+    </ng-container>
+  
+    <!-- Jeoi Mandi Column -->
+    <ng-container matColumnDef="commertial">
+      <th mat-header-cell *matHeaderCellDef>Commertial</th>
+      <td mat-cell *matCellDef="let element"> {{element.commertial}} </td>
+    </ng-container>
+  
+    <!-- Brij Auto Column -->
+    <ng-container matColumnDef="dpng">
+      <th mat-header-cell *matHeaderCellDef>DPNG</th>
+      <td mat-cell *matCellDef="let element"> {{element.dpng}} </td>
+    </ng-container>
+  
+    <!-- Hariom Bodla Column -->
+    <ng-container matColumnDef="cng">
+      <th mat-header-cell *matHeaderCellDef>CNG (Kg)</th>
+      <td mat-cell *matCellDef="let element"> {{element.cng}} </td>
+    </ng-container>
+  
+  
+      <!-- Total consumption Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element"><button mat-icon-button ><mat-icon>edit</mat-icon></button></td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[15, 30, 90]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements">
+  </mat-paginator>
+  
+  

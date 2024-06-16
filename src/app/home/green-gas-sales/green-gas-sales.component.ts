@@ -11,23 +11,6 @@ import { GreenGasData } from '../../../../interface/greenGas.interface';
 
 
 
-export interface PeriodicElement {
-  date: number;
-  tpNagar: number;
-  jeoniMandi: number;
-  brijAuto: number;
-  hariomBodla: number
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {date: 1, tpNagar: 112099, jeoniMandi: 10079, brijAuto: 12302.2, hariomBodla:123.2},
-  {date: 2, tpNagar: 132599, jeoniMandi: 23079, brijAuto: 11302.2, hariomBodla:153.2},
-  {date: 3, tpNagar: 142089, jeoniMandi: 69079, brijAuto: 13302.2, hariomBodla:163.2},
-  {date: 4, tpNagar: 152011, jeoniMandi: 14079, brijAuto: 21502.2, hariomBodla:183.2}
-];
-
-
-
 @Component({
   selector: 'app-green-gas-sales',
   standalone: true,

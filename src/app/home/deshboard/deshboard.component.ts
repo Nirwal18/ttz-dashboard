@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import {MatRippleModule} from '@angular/material/core'; 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 
@@ -7,6 +8,7 @@ import {MatCardModule} from '@angular/material/card';
   selector: 'app-deshboard',
   standalone: true,
   imports: [
+    MatRippleModule,
     MatGridListModule,
     MatCardModule,
     RouterLink
