@@ -1,11 +1,12 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '@angular/material/input';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { DbService } from '../../../../services/db.service';
+import { GreenGasData } from '../../../../interface/greenGas.interface';
 
 
 
@@ -24,7 +25,8 @@ import { DbService } from '../../../../services/db.service';
 })
 export class AddGreenGasDataComponent implements OnInit {
 
-  @Inject(MAT_DIALOG_DATA) public data: any;
+  readonly data = inject<GreenGasData>(MAT_DIALOG_DATA);
+  isEditMode=true;
 
   _fb = inject(FormBuilder);
   formGrp = this._fb.group({
@@ -47,25 +49,32 @@ export class AddGreenGasDataComponent implements OnInit {
 
   ngOnInit(): void {
     //apply values from providded data while sending opn cmd used in edit mode
-    this.formGrp.patchValue(this.data);
+    console.log(this.data);
+    if(this.data!=null){
+      this.formGrp.patchValue(this.data);
+      this.formGrp.controls.date.disable();
+    }else{
+      this.formGrp.controls.date.enable();
+    }
   }
-
 
 
 
   onSubmit() {
     if (this.formGrp.valid) {
       console.log(this.formGrp.value);
-
       this.saveDataToDb(this.formGrp.value); 
-
-      //sending true event at its consume point
-      this._dialogRef.close(true);
+   
     }
   }
 
   saveDataToDb(data:any){
-    this._dbService.addGreenGasData(data);
+    this._dbService.addGreenGasData(data.date, data).then((status)=>{
+     this._dialogRef.close(status);
+    },(err)=>{
+      this._dialogRef.close(false);
+    }
+  );
   }
 
 

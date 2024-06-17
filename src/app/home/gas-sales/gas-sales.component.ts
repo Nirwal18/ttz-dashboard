@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs'; 
 import { SalesTableComponent } from '../../component/sales-table/sales-table.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SaleEntryDialogComponent } from '../../component/sale-entry-dialog/sale-entry-dialog.component';
 
 
 const DUMMY_DATA=[
@@ -18,6 +23,8 @@ const DUMMY_DATA=[
   standalone: true,
   imports: [
     MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
     SalesTableComponent
   ],
   templateUrl: './gas-sales.component.html',
@@ -25,4 +32,17 @@ const DUMMY_DATA=[
 })
 export class GasSalesComponent {
   dataSource:any =DUMMY_DATA;
+
+  readonly dialog = inject(MatDialog);
+  private _snackBar = inject(MatSnackBar);
+
+
+
+
+  onAddClick(){
+    //open sales add dialog
+
+    this.dialog.open(SaleEntryDialogComponent);
+  }
+
 }
