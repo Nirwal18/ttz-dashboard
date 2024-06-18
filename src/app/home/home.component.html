@@ -7,18 +7,18 @@
     <mat-drawer mode="side" #sideNav opened>
    
       <mat-nav-list>
-        <mat-list-item  routerLink="/home/dashboard" href="/home/dashboard" >
+        <mat-list-item  routerLink="/home/dashboard" (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>dashboard</mat-icon> <span>Dashboard</span>
         </mat-list-item>
-        <mat-list-item >
+        <mat-list-item (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>supervisor_account</mat-icon> <span>Customer</span>
-        </mat-list-item>
+        </mat-list-item >
 
-        <mat-list-item >
+        <mat-list-item (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>settings</mat-icon> <span>Settings</span>
         </mat-list-item>
 
-        <mat-list-item >
+        <mat-list-item (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>analytics</mat-icon> <span>Analytics</span>
         </mat-list-item>
       

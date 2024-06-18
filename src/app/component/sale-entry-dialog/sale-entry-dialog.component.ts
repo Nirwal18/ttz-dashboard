@@ -35,7 +35,10 @@ export class SaleEntryDialogComponent {
 
 
   onSubmit(){
-    
+    this._dialogRef.close({
+      site:this.data.site,
+      data:this.formGrp.getRawValue()
+    });
   }
 
 }

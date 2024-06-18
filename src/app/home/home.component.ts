@@ -1,4 +1,4 @@
-import { Component, InjectionToken, OnInit, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, InjectionToken, OnInit, ViewChild, inject } from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav'
@@ -26,7 +26,7 @@ import {  NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fr
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit{
   currentRoute = "";
   screenWidth: number = 499;
   @ViewChild('sideNav') sideNav!: MatDrawer;
@@ -41,16 +41,26 @@ export class HomeComponent implements OnInit{
          this.currentRoute = (event as NavigationEnd).url
       });
 
-       // set screenWidth on page load
-    this.screenWidth = window.innerWidth;
-    window.onresize = () => {
-      // set screenWidth on screen size change
-      this.screenWidth = window.innerWidth;
-      this.toogleSideNav();
-    };
-    this.toogleSideNav();
-
+   
   }
+
+ngAfterViewInit(): void {
+      // set screenWidth on page load
+      this.screenWidth = window.innerWidth;
+      window.onresize = () => {
+        // set screenWidth on screen size change
+        this.screenWidth = window.innerWidth;
+        this.toogleSideNav();
+      };
+      this.toogleSideNav();  
+}
+
+onSideNavClick(event:any){
+  if(this.screenWidth<500){
+    this.sideNav.close();
+  }
+  
+}
 
   toogleSideNav(){
     if(this.screenWidth<500){

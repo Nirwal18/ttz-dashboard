@@ -8,21 +8,21 @@
 
 
     <mat-tab label="Agra"> 
-        <app-sales-table [dataSource]="dataSource"/>
+        <app-sales-table [dataSource]="dataSourceAgra"/>
     </mat-tab>
 
 
 
-    <mat-tab label="Firojabad">
-        <app-sales-table [dataSource]="dataSource"/>
+    <mat-tab label="Firozabad">
+        <app-sales-table [dataSource]="dataSourceFirozabad"/>
     </mat-tab>
 
     <mat-tab label="Vrindavan">
-        <app-sales-table [dataSource]="dataSource"/>
+        <app-sales-table [dataSource]="dataSourceVrindavan"/>
     </mat-tab>
     
     <mat-tab label="Bharatpur">
-        <app-sales-table [dataSource]="dataSource" (onDeleteClick)="onDeleteClick('')"/>
+        <app-sales-table [dataSource]="dataSourceBharatpur" (onDeleteClick)="onDeleteClick('')"/>
     </mat-tab>
     
   </mat-tab-group>

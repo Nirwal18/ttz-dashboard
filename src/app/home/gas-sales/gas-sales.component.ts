@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs'; 
 import { SalesTableComponent } from '../../component/sales-table/sales-table.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +14,8 @@ import {
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { SiteChooserComponent } from '../../component/site-chooser/site-chooser.component';
+import { SaleData } from '../../../../interface/sale.interface';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 const DUMMY_DATA=[
@@ -39,13 +41,70 @@ const DUMMY_DATA=[
   templateUrl: './gas-sales.component.html',
   styleUrl: './gas-sales.component.scss'
 })
-export class GasSalesComponent {
+export class GasSalesComponent implements OnInit{
   dataSource:any =DUMMY_DATA;
 
   readonly dialog = inject(MatDialog);
   readonly _bottomSheet = inject(MatBottomSheet);
   private _snackBar = inject(MatSnackBar);
   private _dbService = inject(DbService);
+
+  
+  dataSourceAgra = new MatTableDataSource<SaleData>();
+  dataSourceFirozabad = new MatTableDataSource<SaleData>();
+  dataSourceVrindavan = new MatTableDataSource<SaleData>();
+  dataSourceBharatpur = new MatTableDataSource<SaleData>();
+
+  ngOnInit(): void {
+    this.updateUi();
+  }
+
+
+  updateUi(){
+    this.getAgraData();
+    this.getFirojabadData();
+    this.getVrindavanData();
+    this.getBharatpurData();
+  }
+
+  getAgraData(){
+    this._dbService.loadSalesData("Agra-sales")
+    .subscribe({
+      next:(value)=>{
+        this.dataSourceAgra.data = value
+        console.log(value);
+      
+      }
+    })
+  }
+
+  getFirojabadData(){
+    this._dbService.loadSalesData("Firozabad-sales")
+    .subscribe({
+      next:(value)=>{
+        this.dataSourceFirozabad.data = value
+      }
+    })
+  }
+
+  getVrindavanData(){
+    this._dbService.loadSalesData("Vrindavan-sales")
+    .subscribe({
+      next:(value)=>{
+        this.dataSourceVrindavan.data = value
+      }
+    })
+  }
+
+  getBharatpurData(){
+    this._dbService.loadSalesData("Bharatpur-sales")
+    .subscribe({
+      next:(value)=>{
+        this.dataSourceBharatpur.data = value
+      }
+    })
+  }
+
 
   onAddClick(){
     //open sales add dialog
@@ -68,7 +127,16 @@ export class GasSalesComponent {
   }
 
   addDialogOpen(site:string, data:any){
-    this.dialog.open(SaleEntryDialogComponent, {data:{site:site, data: data}});
+    this.dialog.open(SaleEntryDialogComponent, {data:{site:site, data: data}})
+    .afterClosed()
+    .subscribe({
+      next:(val)=>{
+        this._dbService.addSalesData(val.site+'-sales',val.data.date,val.data)
+        .then(()=>{
+          alert("Data added sucessfully");
+        });
+      }
+    })
   }
 
 

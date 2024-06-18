@@ -4,9 +4,9 @@ import { Firestore, FirestoreModule, collectionData } from "@angular/fire/firest
 import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from "firebase/firestore";
 import { Observable } from "rxjs";
 import { GreenGasData } from "../interface/greenGas.interface";
-import { rejects } from "assert";
-import { resolve } from "path";
-import { update } from "firebase/database";
+import { SaleData } from "../interface/sale.interface";
+
+
 
 @Injectable({
     providedIn: "root"
@@ -42,7 +42,13 @@ export class DbService{
     }
 
 
-    addSalesData(site:string,key:string,data:any){
+    loadSalesData(site:string):Observable<SaleData[]>{
+        const dataRef = collection(this.db,site);
+        const queryAll = query(dataRef, orderBy('date', 'desc'));
+        return collectionData(queryAll);
+    }
+
+    addSalesData(site:string,key:string,data:any):Promise<boolean>{
         const ref = doc(this.db,site,key);
         return new Promise((resolve, rejects)=>{
             setDoc(ref,data, {merge: false}).then(()=>{
@@ -50,9 +56,13 @@ export class DbService{
             },(err)=>{
                 rejects(err);
             });
-        });
+        }); 
+    }
 
-        
+
+    deleteSalesData(site:string,key:string):Promise<void>{
+        const ref = doc(this.db,site,key );
+        return deleteDoc(ref);
     }
 
 
