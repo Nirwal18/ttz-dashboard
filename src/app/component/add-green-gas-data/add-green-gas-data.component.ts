@@ -34,6 +34,7 @@ export class AddGreenGasDataComponent implements OnInit {
     jeoniMandi: 0,
     brijAuto: 0,
     hariomBodla: 0,
+    vyom:0,
     date: new FormControl<string>('',[Validators.required])
   });
 
@@ -61,9 +62,10 @@ export class AddGreenGasDataComponent implements OnInit {
 
 
   onSubmit() {
+    //console.log(this.formGrp.getRawValue());
     if (this.formGrp.valid) {
-      console.log(this.formGrp.value);
-      this.saveDataToDb(this.formGrp.value); 
+      //console.log(this.formGrp.value);
+      this.saveDataToDb(this.formGrp.getRawValue()); 
    
     }
   }

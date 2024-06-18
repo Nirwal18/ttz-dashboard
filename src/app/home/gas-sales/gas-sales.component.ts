@@ -6,6 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SaleEntryDialogComponent } from '../../component/sale-entry-dialog/sale-entry-dialog.component';
+import { DbService } from '../../../../services/db.service';
+import { ConfirmationDialogComponent } from '../../component/confirmation-dialog/confirmation-dialog.component';
+import {
+  MatBottomSheet,
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
+import { SiteChooserComponent } from '../../component/site-chooser/site-chooser.component';
 
 
 const DUMMY_DATA=[
@@ -25,6 +33,7 @@ const DUMMY_DATA=[
     MatTabsModule,
     MatButtonModule,
     MatIconModule,
+    MatBottomSheetModule,
     SalesTableComponent
   ],
   templateUrl: './gas-sales.component.html',
@@ -34,15 +43,40 @@ export class GasSalesComponent {
   dataSource:any =DUMMY_DATA;
 
   readonly dialog = inject(MatDialog);
+  readonly _bottomSheet = inject(MatBottomSheet);
   private _snackBar = inject(MatSnackBar);
-
-
-
+  private _dbService = inject(DbService);
 
   onAddClick(){
     //open sales add dialog
-
-    this.dialog.open(SaleEntryDialogComponent);
+    //this.dialog.open(SaleEntryDialogComponent);
+    this.openBottomSheet();
   }
 
+  onEditClick(data:any){
+    this.dialog.open(SaleEntryDialogComponent, {data:data});
+  }
+
+  onDeleteClick(data:any){
+    this.dialog.open(
+      ConfirmationDialogComponent,{
+        data:{
+          title:"Delete reading", 
+          msg:"Would you like to delete reading of date "+data.date
+        }
+      });
+  }
+
+  addDialogOpen(site:string, data:any){
+    this.dialog.open(SaleEntryDialogComponent, {data:{site:site, data: data}});
+  }
+
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(SiteChooserComponent)
+    .afterDismissed()
+    .subscribe({next:(val)=>{
+      this.addDialogOpen(val, undefined)
+    }});
+  }
 }

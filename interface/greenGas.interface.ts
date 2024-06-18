@@ -3,5 +3,6 @@ export interface GreenGasData{
     jeoniMandi:number,
     brijAuto:number,
     hariomBodla:number,
+    vyom:number
     date:string
 }

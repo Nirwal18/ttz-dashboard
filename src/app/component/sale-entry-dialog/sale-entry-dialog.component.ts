@@ -21,7 +21,8 @@ import { AddGreenGasDataComponent } from '../add-green-gas-data/add-green-gas-da
 })
 export class SaleEntryDialogComponent {
 
-  @Inject(MAT_DIALOG_DATA) public data: any;
+  readonly data = inject<any>(MAT_DIALOG_DATA);
+
   _dialogRef= inject( MatDialogRef<AddGreenGasDataComponent>);
   _fb = inject(FormBuilder)
   formGrp=this._fb.group({
@@ -30,7 +31,7 @@ export class SaleEntryDialogComponent {
     dpng: 0,
     cng: 0,
     date: new FormControl<string>('',[Validators.required])
-  })
+  });
 
 
   onSubmit(){

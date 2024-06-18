@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, Output, ViewChild, output } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table'; 
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
 
   ],
   templateUrl: './sales-table.component.html',
@@ -19,8 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
 export class SalesTableComponent implements  OnInit,AfterViewInit{
 
   @Input() dataSource:any;
+  onDeleteClick = output<string>();
+  onEditClick = output<any>();
   displayedColumns: string[] = ['date','industrial', 'commertial', 'dpng', 'cng','action'];
   @ViewChild(MatPaginator) paginator!:MatPaginator ;
+
 
 
 
@@ -31,5 +36,6 @@ export class SalesTableComponent implements  OnInit,AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator; 
   }
+
 
 }

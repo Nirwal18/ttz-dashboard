@@ -3,7 +3,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import {
   MatSnackBar,
@@ -13,6 +13,7 @@ import {
 import { AddGreenGasDataComponent } from '../../component/add-green-gas-data/add-green-gas-data.component';
 import { DbService } from '../../../../services/db.service';
 import { GreenGasData } from '../../../../interface/greenGas.interface';
+import { ConfirmationDialogComponent } from '../../component/confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -32,7 +33,7 @@ import { GreenGasData } from '../../../../interface/greenGas.interface';
 
 export class GreenGasSalesComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['date', 'tpNagar', 'jeoniMandi', 'brijAuto', 'hariomBodla', 'total', 'action'];
+  displayedColumns: string[] = ['date', 'tpNagar', 'jeoniMandi', 'brijAuto', 'hariomBodla', 'vyom','total', 'action'];
   //dataSource = ELEMENT_DATA;
   dataSource = new MatTableDataSource<GreenGasData>();
 
@@ -43,6 +44,10 @@ export class GreenGasSalesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor(private location: Location){
+
+  }
+
 
   ngOnInit(): void {
     this.updateUi();
@@ -51,6 +56,10 @@ export class GreenGasSalesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  onBack(){
+    this.location.back();
   }
 
   updateUi() {
@@ -92,10 +101,23 @@ export class GreenGasSalesComponent implements OnInit, AfterViewInit {
   }
 
   onDeleteClick(data:any){
-
+    this.dialog.open(
+      ConfirmationDialogComponent,{
+        data:{
+          title:"Delete reading", 
+          msg:"Would you like to delete reading of date "+data.date
+        }
+      }).afterClosed().subscribe({
+        next:(val)=>{
+          if(val){
+            this.dbService.deleteGreenGas(data.date);
+          }
+        }
+      });
+      
   }
 
-
+ 
 
 
 }
