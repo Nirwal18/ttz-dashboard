@@ -29,6 +29,7 @@ export class AuthService{
 
     logout(){
         signOut(this.fireAuth);
+        console.log("Logout done");
     }
 
 }

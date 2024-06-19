@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -28,6 +29,7 @@ export class LoginComponent {
   
   email="";
   pass="";
+  private _snackBar = inject(MatSnackBar);
   authService = inject(AuthService)
   router = inject(Router)
 
@@ -37,10 +39,11 @@ export class LoginComponent {
     //alert(this.email);
     this.authService.login(this.email, this.pass).subscribe({
       next:()=>{
-        this.navigateToHomePage();
+        this._snackBar.open("Login sucess...",undefined,{duration: 1000});
       
       },
-      error:()=>{
+      error:(err)=>{
+        this._snackBar.open("Login error: "+err);
       }
     })
   }

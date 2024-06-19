@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { FirebaseApp } from "@angular/fire/app";
 import { Firestore, FirestoreModule, collectionData } from "@angular/fire/firestore";
-import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from "firebase/firestore";
+import { DocumentData, DocumentReference, DocumentSnapshot, addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, setDoc } from "firebase/firestore";
 import { Observable } from "rxjs";
 import { GreenGasData } from "../interface/greenGas.interface";
 import { SaleData } from "../interface/sale.interface";
@@ -52,7 +52,8 @@ export class DbService{
         const ref = doc(this.db,site,key);
         return new Promise((resolve, rejects)=>{
             setDoc(ref,data, {merge: false}).then(()=>{
-              resolve(true);
+                this.updateAndCalculateTTZsalesData(key,data);
+                resolve(true);
             },(err)=>{
                 rejects(err);
             });
@@ -65,8 +66,42 @@ export class DbService{
         return deleteDoc(ref);
     }
 
+    loadDocument(site:string, key:string):Promise<DocumentSnapshot>{
+        const ref = doc(this.db,site,key);
+        return getDoc(ref);
 
+    }
 
-  
-   
+    saveDocument(site:string, key:string, data:any):Promise<void>{
+        const ref = doc(this.db, site, key);
+        //return addDoc(ref, data);
+        return setDoc(ref,data, {merge: false});
+    }
+
+    updateAndCalculateTTZsalesData(key:string, data:SaleData){
+        let ttzSite = "TTZ-Sales";
+        //let key = "19-08-2024";
+
+        //let data:SaleData = {date:"19-08-2024", siteName: "Agra", industrial:0 ,commertial:0 , dpng:0 , cng:0}
+
+        return this.loadDocument(ttzSite, key)
+        .then((value)=>{
+            console.log("TTZ data:");
+            console.log(value.data());
+            if(value.data()==undefined){
+                return this.saveDocument(ttzSite, key,data);
+            }else{
+                const ttzData = value.data() as SaleData;
+                let newData = {
+                    date: key, siteName:ttzSite, 
+                    industrial:ttzData.industrial + data.industrial, 
+                    commertial:ttzData.commertial + data.commertial, 
+                    dpng:ttzData.dpng + data.dpng, 
+                    cng:ttzData.cng + data.cng
+                };
+                return this.saveDocument(ttzSite, key, newData);
+            }
+        });
+     }
+
 }

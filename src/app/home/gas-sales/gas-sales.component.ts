@@ -49,7 +49,8 @@ export class GasSalesComponent implements OnInit{
   private _snackBar = inject(MatSnackBar);
   private _dbService = inject(DbService);
 
-  
+ 
+  dataSourceTTZ = new MatTableDataSource<SaleData>();
   dataSourceAgra = new MatTableDataSource<SaleData>();
   dataSourceFirozabad = new MatTableDataSource<SaleData>();
   dataSourceVrindavan = new MatTableDataSource<SaleData>();
@@ -57,16 +58,29 @@ export class GasSalesComponent implements OnInit{
 
   ngOnInit(): void {
     this.updateUi();
-  }
+
+    //this._dbService.updateAndCalculateTTZsalesData()
+;  }
 
 
   updateUi(){
+    this.getTTZData();
     this.getAgraData();
     this.getFirojabadData();
     this.getVrindavanData();
     this.getBharatpurData();
   }
 
+  getTTZData(){
+    this._dbService.loadSalesData("TTZ-Sales")
+    .subscribe({
+      next:(value)=>{
+        this.dataSourceTTZ.data = value
+        console.log(value);
+      
+      }
+    })
+  }
   getAgraData(){
     this._dbService.loadSalesData("Agra-sales")
     .subscribe({
