@@ -5,6 +5,7 @@ import { DocumentData, DocumentReference, DocumentSnapshot, addDoc, collection, 
 import { Observable } from "rxjs";
 import { GreenGasData } from "../interface/greenGas.interface";
 import { SaleData } from "../interface/sale.interface";
+import { Site } from "../interface/site.interface";
 
 
 
@@ -102,6 +103,12 @@ export class DbService{
                 return this.saveDocument(ttzSite, key, newData);
             }
         });
+     }
+
+     loadSites():Observable<Site[]>{
+        const dataRef = collection(this.db,"Sites");
+        const queryAll = query(dataRef);
+        return collectionData(queryAll);
      }
 
 }

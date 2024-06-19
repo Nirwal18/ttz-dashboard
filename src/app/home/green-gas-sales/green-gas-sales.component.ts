@@ -44,14 +44,10 @@ export class GreenGasSalesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private location: Location){
-
-  }
-
+  _location = inject(Location);
 
   ngOnInit(): void {
     this.updateUi();
-
   }
 
   ngAfterViewInit(): void {
@@ -59,17 +55,17 @@ export class GreenGasSalesComponent implements OnInit, AfterViewInit {
   }
 
   onBack(){
-    this.location.back();
+    this._location.back();
   }
 
   updateUi() {
-    this.dbService.loadAllGreenGasData().subscribe({
+    this.dbService.loadAllGreenGasData()
+    .subscribe({
       next: (value) => {
         this.dataSource.data = value;
       }
-    })
+    });
   }
-
 
   displayAddDataDialog() {
     const enterAnimationDuration = "100";
@@ -116,8 +112,6 @@ export class GreenGasSalesComponent implements OnInit, AfterViewInit {
       });
       
   }
-
- 
 
 
 }

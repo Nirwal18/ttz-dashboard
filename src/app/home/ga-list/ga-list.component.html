@@ -1,8 +1,22 @@
-<h1>GA under TTZ</h1>
+<div class="display-flex header">
+  <button mat-icon-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <h1 class="title-text">Green gas sales</h1>
+  <span class="spacer-horizontal"></span>
+  <button mat-button (click)="addSite()">
+    <mat-icon>add</mat-icon>
+    Add Site
+  </button>
+</div>
+
 
 <main class="content-wrap">
+    
+  @for(site of _sites; track  site.siteName){
     <header class="content-head">
-      <h1>Agra</h1>
+      <h1>{{site.siteName}}</h1>
     </header>
     
     <div class="content">
@@ -44,6 +58,9 @@
         
       </section>
     </div>
+  }
+  
+ 
 
     
     <header class="content-head">
