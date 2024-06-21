@@ -4,7 +4,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
+
 
 @Component({
   selector: 'app-nav-bar',

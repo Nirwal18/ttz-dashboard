@@ -8,6 +8,7 @@ import { DeshboardComponent } from './home/deshboard/deshboard.component';
 import { GaListComponent } from './home/ga-list/ga-list.component'
 import { GreenGasSalesComponent } from './home/green-gas-sales/green-gas-sales.component';
 import { GasSalesComponent } from './home/gas-sales/gas-sales.component';
+import { CustomersComponent } from './home/customers/customers.component';
 
 export const routes: Routes = [
 
@@ -32,6 +33,10 @@ export const routes: Routes = [
             {
                 path:'gasSales',
                 component:GasSalesComponent
+            },
+            {
+                path:'customers',
+                component:CustomersComponent
             },
             {
                 path:'about',

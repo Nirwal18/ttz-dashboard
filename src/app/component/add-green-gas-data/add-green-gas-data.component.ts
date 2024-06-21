@@ -26,7 +26,8 @@ import { GreenGasData } from '../../../../interface/greenGas.interface';
 export class AddGreenGasDataComponent implements OnInit {
 
   readonly data = inject<GreenGasData>(MAT_DIALOG_DATA);
-  isEditMode=true;
+  
+  _title:string = "Add green gas data";
 
   _fb = inject(FormBuilder);
   formGrp = this._fb.group({
@@ -54,6 +55,7 @@ export class AddGreenGasDataComponent implements OnInit {
     if(this.data!=null){
       this.formGrp.patchValue(this.data);
       this.formGrp.controls.date.disable();
+      this._title="Modify green gas data";
     }else{
       this.formGrp.controls.date.enable();
     }

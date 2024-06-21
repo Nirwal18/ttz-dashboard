@@ -2,7 +2,7 @@
 .title-text{
     //font-size: 18px;
 
-    font: 800 1.5rem / 1.5rem Roboto, sans-serif;
+    font: 400 1.2rem / 1.5rem Roboto, sans-serif;
     letter-spacing: .031rem;
     margin: 0 auto 0 10px;
   }
@@ -11,3 +11,6 @@
     align-items: center;
   }
   
+  .spacer-horizontal{
+    flex:1;
+  }

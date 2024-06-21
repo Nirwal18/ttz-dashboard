@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add new site</h2>
+<h2 mat-dialog-title>{{_title}}</h2>
 
 <form [formGroup]="formGrp" (ngSubmit)="onSubmit()">
     <mat-dialog-content>
@@ -7,6 +7,9 @@
         <mat-form-field [style.width]="'100%'" appearance="outline">
             <mat-label>Site Names</mat-label>
             <input matInput type="text" formControlName="siteName">
+            @if (formGrp.controls.siteName.errors?.['required']) {
+                <mat-error>Site name can't be empty.</mat-error>
+              }
         </mat-form-field>
 
         <div class="row">
@@ -29,13 +32,13 @@
 
             <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>DPNG customer count</mat-label>
-                <input matInput type="number" formControlName="dpng">
+                <input matInput type="number" formControlName="dpngCustomerCount">
             </mat-form-field>
 
 
             <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>CNG station count</mat-label>
-                <input matInput type="number" formControlName="cng">
+                <input matInput type="number" formControlName="cngStationCount">
             </mat-form-field>
 
         </div>

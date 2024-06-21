@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, InjectionToken, OnInit, ViewChild, inject } from '@angular/core';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { NavBarComponent } from '../component/nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list';
