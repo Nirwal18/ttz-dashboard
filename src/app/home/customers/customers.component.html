@@ -1,1 +1,53 @@
-<p>customers works!</p>
+<h1>TTZ customers</h1>
+
+<table mat-table [dataSource]="_dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8 bg">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- TP Nagar Column -->
+    <ng-container matColumnDef="mru">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by MRU">MRU</th>
+      <td mat-cell *matCellDef="let element"> {{element.mru}} </td>
+    </ng-container>
+  
+    <!-- Date Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Name">Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- TP Nagar Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by type">Type</th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+  
+    <!-- Jeoi Mandi Column -->
+    <ng-container matColumnDef="dcq">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by DCQ">DCQ</th>
+      <td mat-cell *matCellDef="let element"> {{element.dcq}} </td>
+    </ng-container>
+  
+    <!-- Brij Auto Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address">Address</th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+  
+  
+      <!-- Total consumption Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="onEditClick()"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button (click)="onDeleteClick()"><mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons aria-label="Select page of customer search results"></mat-paginator>

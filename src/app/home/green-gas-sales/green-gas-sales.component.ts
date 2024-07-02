@@ -1,15 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild, inject, viewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe, Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddGreenGasDataComponent } from '../../component/add-green-gas-data/add-green-gas-data.component';
 import { DbService } from '../../../../services/db.service';
 import { GreenGasData } from '../../../../interface/greenGas.interface';
