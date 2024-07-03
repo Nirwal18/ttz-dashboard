@@ -29,6 +29,6 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)), 
     provideAuth(() => getAuth()), 
     provideFirestore(() => getFirestore()), 
-    provideDatabase(() => getDatabase())
+    provideDatabase(() => getDatabase()), provideFirebaseApp(() => initializeApp({"projectId":"ttz-dashboard-1","appId":"1:683453690922:web:98de1ad51e1bbb98a6bf53","storageBucket":"ttz-dashboard-1.appspot.com","apiKey":"AIzaSyCSLIDgWlcyzDV-iL9hSwJvmKPvwjMyiJA","authDomain":"ttz-dashboard-1.firebaseapp.com","messagingSenderId":"683453690922","measurementId":"G-CPS6XV2CWN"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({"projectId":"ttz-dashboard-1","appId":"1:683453690922:web:98de1ad51e1bbb98a6bf53","storageBucket":"ttz-dashboard-1.appspot.com","apiKey":"AIzaSyCSLIDgWlcyzDV-iL9hSwJvmKPvwjMyiJA","authDomain":"ttz-dashboard-1.firebaseapp.com","messagingSenderId":"683453690922","measurementId":"G-CPS6XV2CWN"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())
   ]
 };
