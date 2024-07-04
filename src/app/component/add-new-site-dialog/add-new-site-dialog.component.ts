@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
-import { Site } from '../../../../interface/site.class';
+import { Site } from '../../../../model/site';
 
 @Component({
   selector: 'app-add-new-site-dialog',
@@ -25,7 +25,7 @@ export class AddNewSiteDialogComponent implements OnInit{
   
   _fb = inject(FormBuilder)
   formGrp=this._fb.group({
-    siteName: new FormControl<string>('',[Validators.required]),
+    name: new FormControl<string>('',[Validators.required]),
     industrialCustomerCount:0,
     commertialCustomerCount: 0,
     dpngCustomerCount: 0,
@@ -40,10 +40,10 @@ export class AddNewSiteDialogComponent implements OnInit{
        console.log(this.data);
        if(this.data!=null){
          this.formGrp.patchValue(this.data);
-         this.formGrp.controls.siteName.disable();
+         this.formGrp.controls.name.disable();
          this._title = "Modify site";
        }else{
-         this.formGrp.controls.siteName.enable();
+         this.formGrp.controls.name.enable();
        }
   }
 

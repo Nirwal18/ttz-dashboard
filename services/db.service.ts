@@ -5,7 +5,7 @@ import { DocumentData, DocumentReference, DocumentSnapshot, addDoc, collection, 
 import { Observable } from "rxjs";
 import { GreenGasData } from "../interface/greenGas.interface";
 import { SaleData } from "../interface/sale.interface";
-import { Site } from "../interface/site.class";
+import { Site } from "../model/site";
 
 
 
@@ -111,10 +111,10 @@ export class DbService{
         return collectionData(queryAll);
      }
 
-     addSite(data:Site){
-        const ref = doc(this.db, "Sites", data.siteName);
+     addSite(site:Site){
+        const ref = doc(this.db, "Sites", site.name);
         //return addDoc(ref, data);
-        return setDoc(ref,data, {merge: false});
+        return setDoc(ref,site, {merge: false});
      }
 
      deleteSite(key:string){

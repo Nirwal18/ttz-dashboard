@@ -13,9 +13,9 @@
 
 
 <main class="content-wrap">
-  @for(site of _sites; track  site.siteName){
+  @for(site of _sites; track  site.name){
     <header class="content-head">
-      <h1>{{site.siteName}}</h1>
+      <h1>{{site.name}}</h1>
 
       <span class="spacer-horizontal"></span>
       <button mat-icon-button (click)="editSite(site)">

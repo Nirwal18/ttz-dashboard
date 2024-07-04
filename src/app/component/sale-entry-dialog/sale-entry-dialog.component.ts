@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -19,7 +19,7 @@ import { AddGreenGasDataComponent } from '../add-green-gas-data/add-green-gas-da
   templateUrl: './sale-entry-dialog.component.html',
   styleUrl: './sale-entry-dialog.component.css'
 })
-export class SaleEntryDialogComponent {
+export class SaleEntryDialogComponent implements OnInit{
 
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
@@ -32,6 +32,21 @@ export class SaleEntryDialogComponent {
     cng: 0,
     date: new FormControl<string>('',[Validators.required])
   });
+
+
+  
+
+
+  ngOnInit(): void {
+    //apply values from providded data while sending opn cmd used in edit mode
+    console.log(this.data);
+    if(this.data.data!=null){
+      this.formGrp.patchValue(this.data.data);
+      this.formGrp.controls.date.disable();
+    }else{
+      this.formGrp.controls.date.enable();
+    }
+  }
 
 
   onSubmit(){

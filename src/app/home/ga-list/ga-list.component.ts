@@ -6,9 +6,9 @@ import { DbService } from '../../../../services/db.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNewSiteDialogComponent } from '../../component/add-new-site-dialog/add-new-site-dialog.component';
-import { Site } from '../../../../interface/site.class';
+import { Site } from '../../../../model/site';
 import { ConfirmationDialogComponent } from '../../component/confirmation-dialog/confirmation-dialog.component';
-import { title } from 'process';
+
 
 @Component({
   selector: 'app-ga-list',
@@ -67,11 +67,11 @@ export class GaListComponent {
   }
 
   deleteSite(site:Site){
-    this._dialog.open(ConfirmationDialogComponent, {data:{title: "Delete site", msg: "Are you sure to delete "+site.siteName+" site." }})
+    this._dialog.open(ConfirmationDialogComponent, {data:{title: "Delete site", msg: "Are you sure to delete "+site.name+" site." }})
     .afterClosed()
     .subscribe((value)=>{
       if(value){
-        this._dbService.deleteSite(site.siteName);
+        this._dbService.deleteSite(site.name);
         this._snackBar.open("Sidte deleted",undefined,{duration: 1000});
       }
     });

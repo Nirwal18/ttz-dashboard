@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs'; 
 import { SalesTableComponent } from '../../component/sales-table/sales-table.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,7 @@ import {
 import { SiteChooserComponent } from '../../component/site-chooser/site-chooser.component';
 import { SaleData } from '../../../../interface/sale.interface';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subject, takeUntil } from 'rxjs';
 
 
 const DUMMY_DATA=[
@@ -41,13 +42,15 @@ const DUMMY_DATA=[
   templateUrl: './gas-sales.component.html',
   styleUrl: './gas-sales.component.scss'
 })
-export class GasSalesComponent implements OnInit{
+export class GasSalesComponent implements OnInit, OnDestroy{
   dataSource:any =DUMMY_DATA;
 
   readonly dialog = inject(MatDialog);
   readonly _bottomSheet = inject(MatBottomSheet);
   private _snackBar = inject(MatSnackBar);
   private _dbService = inject(DbService);
+
+  private unsubcribe$ = new Subject<void>();
 
  
   dataSourceTTZ = new MatTableDataSource<SaleData>();
@@ -59,9 +62,12 @@ export class GasSalesComponent implements OnInit{
   ngOnInit(): void {
     this.updateUi();
 
-    //this._dbService.updateAndCalculateTTZsalesData()
-;  }
+    //this._dbService.updateAndCalculateTTZsalesData();
+  }
 
+ngOnDestroy(): void {
+  
+}
 
   updateUi(){
     this.getTTZData();
@@ -126,26 +132,33 @@ export class GasSalesComponent implements OnInit{
     this.openBottomSheet();
   }
 
-  onEditClick(data:any){
-    this.dialog.open(SaleEntryDialogComponent, {data:data});
+  onEditClick(site:string, data:any){
+    console.log(data);
+    this.addDialogOpen(site, data);
   }
 
-  onDeleteClick(data:any){
+  onDeleteClick(site:string, data:any){
     this.dialog.open(
       ConfirmationDialogComponent,{
         data:{
           title:"Delete reading", 
           msg:"Would you like to delete reading of date "+data.date
         }
+      }).afterClosed().subscribe((val)=>{
+        if(val){
+          this._dbService.deleteSalesData(site, data.date);
+        }
+        
       });
   }
 
   addDialogOpen(site:string, data:any){
+
     this.dialog.open(SaleEntryDialogComponent, {data:{site:site, data: data}})
     .afterClosed()
     .subscribe({
       next:(val)=>{
-        this._dbService.addSalesData(val.site+'-sales',val.data.date,val.data)
+        this._dbService.addSalesData(site,val.data.date,val.data)
         .then(()=>{
           alert("Data added sucessfully");
         });
@@ -158,7 +171,8 @@ export class GasSalesComponent implements OnInit{
     this._bottomSheet.open(SiteChooserComponent)
     .afterDismissed()
     .subscribe({next:(val)=>{
-      this.addDialogOpen(val, undefined)
+      if( (val as string).length==0)return;
+      this.addDialogOpen(val+'-sales', undefined)
     }});
   }
 }

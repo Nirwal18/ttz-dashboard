@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-customers',
@@ -24,6 +25,7 @@ export class CustomersComponent implements AfterViewInit{
   @ViewChild(MatSort) _sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  private _location = inject(Location);
   private _snackBar = inject(MatSnackBar);
 
   displayedColumns: string[] = ['mru','name', 'type', 'dcq', 'address', 'action'];
@@ -70,6 +72,13 @@ export class CustomersComponent implements AfterViewInit{
     }
   }
 
+  onBack(){
+    this._location.back();
+  }
+
+  displayAddDataDialog(){
+
+  }
 
   onEditClick(){
 

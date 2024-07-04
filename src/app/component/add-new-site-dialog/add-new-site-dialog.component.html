@@ -6,8 +6,8 @@
 
         <mat-form-field [style.width]="'100%'" appearance="outline">
             <mat-label>Site Names</mat-label>
-            <input matInput type="text" formControlName="siteName">
-            @if (formGrp.controls.siteName.errors?.['required']) {
+            <input matInput type="text" formControlName="name">
+            @if (formGrp.controls.name.errors?.['required']) {
                 <mat-error>Site name can't be empty.</mat-error>
               }
         </mat-form-field>

@@ -9,6 +9,7 @@ import { GaListComponent } from './home/ga-list/ga-list.component'
 import { GreenGasSalesComponent } from './home/green-gas-sales/green-gas-sales.component';
 import { GasSalesComponent } from './home/gas-sales/gas-sales.component';
 import { CustomersComponent } from './home/customers/customers.component';
+import { CngStationsComponent } from './home/cng-stations/cng-stations.component';
 
 export const routes: Routes = [
 
@@ -37,6 +38,10 @@ export const routes: Routes = [
             {
                 path:'customers',
                 component:CustomersComponent
+            },
+            {
+                path:'cng-stations',
+                component:CngStationsComponent
             },
             {
                 path:'about',

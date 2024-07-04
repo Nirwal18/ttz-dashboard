@@ -1,6 +1,11 @@
 .fab-btn{
     position: absolute;
-    right: 24px;
-    bottom: 34px;
+    right: 40px;
+    bottom: 40px;
     z-index: 1000;
+    background-color:#005cbb;
+
+    mat-icon{
+        color: white;
+    }
 }

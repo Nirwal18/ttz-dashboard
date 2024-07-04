@@ -1,4 +1,15 @@
-<h1>TTZ customers</h1>
+<div class="display-flex header">
+  <button mat-icon-button (click)="onBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h1 class="title-text">TTZ customers</h1>
+  <span class="spacer-horizontal"></span>
+  <button mat-button (click)="displayAddDataDialog()">
+    <mat-icon>add</mat-icon>
+    Add data
+  </button>
+</div>
+
 
 <table mat-table [dataSource]="_dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8 bg">
 

@@ -9,7 +9,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: flex;
 }
 
+.spacer-horizontal{
+  flex: 1 1 auto;
+}
 
+
+.title-text{
+  font-size: 18px !important;
+  margin: 0 auto 0 10px !important;
+}
+
+.header{
+  align-items: center;
+  margin: 0 auto;
+}
 
 .img-Icon{
     width: 48px;
