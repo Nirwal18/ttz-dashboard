@@ -10,6 +10,8 @@ import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomerDialogComponent } from '../../component/add-customer-dialog/add-customer-dialog.component';
 import { DbService } from '../../../../services/db.service';
+import { EmailService } from '../../../../services/email.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-customers',
@@ -31,8 +33,11 @@ export class CustomersComponent implements AfterViewInit{
   private _location = inject(Location);
   private _snackBar = inject(MatSnackBar);
   private _dbService = inject(DbService);
+
+  private _emailService = inject(EmailService);
   
   readonly dialog = inject(MatDialog);
+
 
   displayedColumns: string[] = ['mru','name', 'type', 'dcq', 'address', 'action'];
   _dataSource = new MatTableDataSource<Customer>();
@@ -88,7 +93,19 @@ export class CustomersComponent implements AfterViewInit{
   }
 
   onEditClick(customer:Customer){
+    
+    // this._emailService.sendEmail(
+    //   "nirwal@live.com",
+    //   "ak.nirwal@gail.co.in",
+    //   "Test email subject",
+    //   "test Email body message"
+    // );
+
+    this._emailService.sendEmai2();
+
     this._snackBar.open("function not implemented",undefined, {duration: 1000});
+
+
   }
 
   onDeleteClick(customer:Customer){

@@ -8,6 +8,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const firebaseConfig = {
   "projectId":"ttz-dashboard-1",
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(), 
     provideAnimationsAsync(), 
     provideAnimationsAsync(), 
+    provideHttpClient(withInterceptorsFromDi()),
     provideFirebaseApp(() => initializeApp(firebaseConfig)), 
     provideAuth(() => getAuth()), 
     provideFirestore(() => getFirestore()), 
