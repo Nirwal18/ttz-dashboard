@@ -7,6 +7,9 @@ import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCustomerDialogComponent } from '../../component/add-customer-dialog/add-customer-dialog.component';
+import { DbService } from '../../../../services/db.service';
 
 @Component({
   selector: 'app-customers',
@@ -27,37 +30,20 @@ export class CustomersComponent implements AfterViewInit{
 
   private _location = inject(Location);
   private _snackBar = inject(MatSnackBar);
+  private _dbService = inject(DbService);
+  
+  readonly dialog = inject(MatDialog);
 
   displayedColumns: string[] = ['mru','name', 'type', 'dcq', 'address', 'action'];
   _dataSource = new MatTableDataSource<Customer>();
 
   constructor(){
-    this._dataSource.data = [
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true},
-      {name: "Akshay", mru:'Agra', dcq: 100, address:"Agra", type:"Industrial", isGscSigned: true, isActive: true},
-      {name: "Sweeto", mru:'Vrindavan',dcq: 320, address:"Ghaziabad", type:"comm", isGscSigned: true, isActive: true}
-    ];
-
   }
 
   ngAfterViewInit(): void {
     this._dataSource.sort = this._sort;
     this._dataSource.paginator = this.paginator;
+    this.loadCustomers();
   }
 
    /** Announce the change in sort state for assistive technology. */
@@ -76,16 +62,37 @@ export class CustomersComponent implements AfterViewInit{
     this._location.back();
   }
 
+
+  loadCustomers(){
+    this._dbService.loadCustomers().subscribe({
+      next:(value)=>{
+        this._dataSource.data = value;
+      },
+      error:(err)=> {
+        this._snackBar.open("Error: "+err, undefined,{duration:1000});
+      },
+    });
+  }
+
   displayAddDataDialog(){
-
+    this.dialog.open(AddCustomerDialogComponent)
+    .afterClosed()
+    .subscribe({
+      next:(val)=>{
+        this._dbService.addCustomer(val)
+        .then(()=>{
+          this._snackBar.open("Data added sucessfully",undefined, {duration: 1000});
+        });
+      }
+    })
   }
 
-  onEditClick(){
-
+  onEditClick(customer:Customer){
+    this._snackBar.open("function not implemented",undefined, {duration: 1000});
   }
 
-  onDeleteClick(){
-
+  onDeleteClick(customer:Customer){
+    this._dbService.deleteCustomer(customer);
   }
 
   

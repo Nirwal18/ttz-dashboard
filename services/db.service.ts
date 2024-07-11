@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { GreenGasData } from "../interface/greenGas.interface";
 import { SaleData } from "../interface/sale.interface";
 import { Site } from "../model/site";
+import { Customer } from "../interface/customer.interface";
 
 
 
@@ -14,6 +15,14 @@ import { Site } from "../model/site";
 }) 
 export class DbService{
     db = inject(Firestore)
+
+
+    private DB_PATH = {
+        CUSTOMERS   : "Customers",
+        GREEN_GAS   : "GreenGas",
+        SITES       : "Sites",
+
+    }
 
     addGreenGasData(key:string, data:GreenGasData):Promise<boolean>{
         // console.log("key :"+key);
@@ -106,19 +115,36 @@ export class DbService{
      }
 
      loadSites():Observable<Site[]>{
-        const dataRef = collection(this.db,"Sites");
+        const dataRef = collection(this.db,this.DB_PATH.SITES);
         const queryAll = query(dataRef);
         return collectionData(queryAll);
      }
 
      addSite(site:Site){
-        const ref = doc(this.db, "Sites", site.name);
+        const ref = doc(this.db, this.DB_PATH.SITES, site.name);
         //return addDoc(ref, data);
         return setDoc(ref,site, {merge: false});
      }
 
      deleteSite(key:string){
-        const ref = doc(this.db,"Sites",key );
+        const ref = doc(this.db,this.DB_PATH.SITES,key );
+        return deleteDoc(ref);
+     }
+
+     loadCustomers():Observable<Customer[]>{
+        const dataRef = collection(this.db,this.DB_PATH.CUSTOMERS);
+        const queryAll = query(dataRef);
+        return collectionData(queryAll);
+     }
+
+     addCustomer(customer:Customer){
+        const ref = doc(this.db, this.DB_PATH.CUSTOMERS, customer.bp.toString());
+        //return addDoc(ref, data);
+        return setDoc(ref,customer, {merge: false});
+     }
+
+     deleteCustomer(customer:Customer){
+        const ref = doc(this.db,this.DB_PATH.CUSTOMERS,customer.bp.toString() );
         return deleteDoc(ref);
      }
 

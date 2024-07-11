@@ -1,1 +1,76 @@
-<p>add-customer-dialog works!</p>
+<h2 mat-dialog-title>Add customer</h2>
+
+<form [formGroup]="formGrp" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+
+    <div class="row">
+      <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>BP number</mat-label>
+        <input matInput type="number" formControlName="bp">
+      </mat-form-field>
+
+
+      <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="row">
+
+      <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>Customer type</mat-label>
+        <mat-select formControlName="type">
+
+          @for(item of CUST_TYPE; track CUST_TYPE){
+            <mat-option value={{item}}>{{item}}</mat-option>
+          }
+          
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>MRU</mat-label>
+        <mat-select formControlName="mru">
+
+          @for(item of MRU_LIST; track MRU_LIST){
+            <mat-option value={{item}}>{{item}}</mat-option>
+          }
+          
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field class="" [style.width]="'100%'" appearance="outline">
+      <mat-label>Address</mat-label>
+      <textarea matInput formControlName="address"></textarea>
+    </mat-form-field>
+
+    <div class="row">
+
+      <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>DCQ</mat-label>
+        <input matInput type="number" formControlName="dcq">
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isGscSigned">Is GSC signed</mat-checkbox>
+      <mat-checkbox formControlName="isActive">Is active</mat-checkbox>
+
+    </div>
+
+  
+
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button cdkFocusInitial type="submit">Save</button>
+  </mat-dialog-actions>
+
+</form>

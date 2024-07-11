@@ -13,6 +13,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex: 1 1 auto;
 }
 
+.row{
+  display: flex;
+  gap: 10px;
+
+  mat-form-field {
+    width: 100%;
+     
+  }
+}
+
 
 .title-text{
   font-size: 18px !important;

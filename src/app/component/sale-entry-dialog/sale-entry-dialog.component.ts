@@ -24,7 +24,8 @@ export class SaleEntryDialogComponent implements OnInit{
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
   _dialogRef= inject( MatDialogRef<AddGreenGasDataComponent>);
-  _fb = inject(FormBuilder)
+  _fb = inject(FormBuilder);
+
   formGrp=this._fb.group({
     industrial: 0,
     commertial: 0,
@@ -55,5 +56,6 @@ export class SaleEntryDialogComponent implements OnInit{
       data:this.formGrp.getRawValue()
     });
   }
+  
 
 }

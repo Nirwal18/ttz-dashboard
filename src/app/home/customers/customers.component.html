@@ -51,8 +51,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button (click)="onEditClick()"><mat-icon>edit</mat-icon></button>
-          <button mat-icon-button (click)="onDeleteClick()"><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button (click)="onEditClick(element)"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button (click)="onDeleteClick(element)"><mat-icon>delete</mat-icon></button>
         </td>
       </ng-container>
   

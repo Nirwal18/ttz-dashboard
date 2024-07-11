@@ -25,3 +25,23 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# App pages
+1. Dashboard
+2. Green gas data
+3. Total gas sales
+4. CNG sales
+5. Customer (Customer list)
+6. CNG station list
+7. Auth > Login
+        > Profile (future plan)
+
+## route 
+    this > Dashboard
+         > Green Gas dashboard
+
+## Dashboard
+
+Shows sales statics like: Sales data of TTZ, Green Gas data, GA count etc.
+
+
