@@ -94,14 +94,14 @@ export class CustomersComponent implements AfterViewInit{
 
   onEditClick(customer:Customer){
     
-    // this._emailService.sendEmail(
-    //   "nirwal@live.com",
-    //   "ak.nirwal@gail.co.in",
-    //   "Test email subject",
-    //   "test Email body message"
-    // );
-
-    this._emailService.sendEmai2();
+    
+    this._emailService.sendEmail(
+      "nirwal@live.com",//to
+      "ak.nirwal@gail.co.in",//cc
+      "test subject",
+      "My test message",
+      ""//token should be provided
+    );
 
     this._snackBar.open("function not implemented",undefined, {duration: 1000});
 
