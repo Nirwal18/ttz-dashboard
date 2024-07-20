@@ -1,6 +1,6 @@
 import { Injectable, inject, signal} from "@angular/core";
 import { Auth, authState, user } from "@angular/fire/auth";
-import { signInWithEmailAndPassword, signOut, updateCurrentUser } from "firebase/auth";
+import { sendEmailVerification, signInWithEmailAndPassword, signOut, updateCurrentUser } from "firebase/auth";
 import { Observable, filter, from, map } from "rxjs";
 import { UserInterface } from "../interface/user.interface";
 
@@ -14,6 +14,7 @@ export class AuthService{
 
 
     constructor(){
+    
     }
 
    
@@ -30,6 +31,10 @@ export class AuthService{
     logout(){
         signOut(this.fireAuth);
         console.log("Logout done");
+    }
+
+    sendEmailForVarification(){
+        return sendEmailVerification(this.fireAuth.currentUser!);
     }
 
 }

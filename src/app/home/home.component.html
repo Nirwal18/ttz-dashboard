@@ -29,7 +29,10 @@
         <mat-list-item (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>analytics</mat-icon> <span>Analytics</span>
         </mat-list-item>
-      
+
+        <mat-list-item routerLink="/auth/profile" (click)="onSideNavClick($event)">
+          <mat-icon matListItemIcon>account_box</mat-icon> <span>Profile</span>
+        </mat-list-item>
 
       </mat-nav-list>
 

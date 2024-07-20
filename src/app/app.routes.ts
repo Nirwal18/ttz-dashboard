@@ -10,6 +10,7 @@ import { GreenGasSalesComponent } from './home/green-gas-sales/green-gas-sales.c
 import { GasSalesComponent } from './home/gas-sales/gas-sales.component';
 import { CustomersComponent } from './home/customers/customers.component';
 import { CngStationsComponent } from './home/cng-stations/cng-stations.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 
 export const routes: Routes = [
 
@@ -60,6 +61,11 @@ export const routes: Routes = [
                 component:LoginComponent,
                 title: 'Login'
 
+            },
+            {
+                path:'profile',
+                component:ProfileComponent,
+                title:'Profile'
             }
         ]
     },
