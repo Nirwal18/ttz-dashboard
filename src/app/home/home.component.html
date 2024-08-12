@@ -18,7 +18,7 @@
           <mat-icon matListItemIcon>supervisor_account</mat-icon> <span>CNG Staions</span>
         </mat-list-item >
 
-        <mat-list-item (click)="onSideNavClick($event)">
+        <mat-list-item routerLink="/tasks/home" (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>task</mat-icon> <span>Task list</span>
         </mat-list-item>
 
@@ -26,7 +26,7 @@
           <mat-icon matListItemIcon>settings</mat-icon> <span>Settings</span>
         </mat-list-item>
 
-        <mat-list-item (click)="onSideNavClick($event)">
+        <mat-list-item routerLink="/home/analytics" (click)="onSideNavClick($event)">
           <mat-icon matListItemIcon>analytics</mat-icon> <span>Analytics</span>
         </mat-list-item>
 

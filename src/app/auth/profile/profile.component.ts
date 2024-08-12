@@ -19,7 +19,9 @@ export class ProfileComponent {
   _auth = inject(AuthService);
   private _snackBar = inject(MatSnackBar);
 
-  isEmailVerified = this._auth.fireAuth.currentUser?.emailVerified;
+  _isEmailVerified = this._auth.fireAuth.currentUser?.emailVerified;
+  _userName= this._auth.fireAuth.currentUser?.displayName ? 
+      this._auth.fireAuth.currentUser?.displayName : "User name not set" ;
 
 
 

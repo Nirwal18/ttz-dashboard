@@ -1,9 +1,31 @@
-.example-header-image {
-    margin: 48px 50%;
-    img{
-      border-radius: 50%;
-      height: 100px;
-      width: 100px;
+
+
+
+div{
+  padding: 0 20px;
+  
+  img{
+    display: block;
+    margin: 24px auto;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+  }
+  
+
+  mat-card{
+    margin:  0 auto;
+    padding: 24px;
+    max-width: 500px;
+    
+    mat-card-content{
+      margin-top: 24px;
     }
   }
-div{padding: 0 20px;}
+}
+
+
+.center-content{
+  display: table;
+  margin: 0 auto;
+}

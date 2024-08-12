@@ -11,6 +11,11 @@ import { GasSalesComponent } from './home/gas-sales/gas-sales.component';
 import { CustomersComponent } from './home/customers/customers.component';
 import { CngStationsComponent } from './home/cng-stations/cng-stations.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { TaskDashboardComponent } from './task-dashboard/task-dashboard.component';
+import { TaskHomeComponent } from './task-dashboard/task-home/task-home.component';
+import { NewTaskComponent } from './task-dashboard/new-task/new-task.component';
+import { TaskListComponent } from './task-dashboard/task-list/task-list.component';
+import { AnalyticsComponent } from './home/analytics/analytics.component';
 
 export const routes: Routes = [
 
@@ -49,6 +54,10 @@ export const routes: Routes = [
                 component:AboutComponent,
                 title:'About us'
             },
+            {
+                path:'analytics',
+                component:AnalyticsComponent
+            }
         ]
     },
     {
@@ -66,6 +75,24 @@ export const routes: Routes = [
                 path:'profile',
                 component:ProfileComponent,
                 title:'Profile'
+            }
+        ]
+    },
+    {
+        path: 'tasks',
+        component:TaskDashboardComponent,
+        children:[
+            {
+                path:'home',
+                component:TaskHomeComponent
+            },
+            {
+                path:'task-new',
+                component:NewTaskComponent
+            },
+            {
+                path:'task-list',
+                component:TaskListComponent
             }
         ]
     },

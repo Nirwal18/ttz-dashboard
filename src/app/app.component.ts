@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
   router = inject(Router);
 
   ngOnInit(): void {
-    this.authService.currentUserSig.set({email:this.authService.fireAuth.currentUser?.email!, userName:""})
+    this.authService.currentUserSig.set({email:this.authService.fireAuth.currentUser?.email!, userName:""});
     this.authService.fireAuth.onAuthStateChanged({
       next:(user)=>{
         if(user!=null && user!= undefined){

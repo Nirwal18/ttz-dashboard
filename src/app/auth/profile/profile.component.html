@@ -1,22 +1,32 @@
 <div>
-    <div class="example-header-image" >
-        <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"/>
+ 
 
-    </div>
+    <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"/>
+
+    <h3 class="center-content padding-24">{{_userName}}</h3>
 
     <mat-card appearance="outlined">
         <mat-card-header>
           <mat-card-title>Email verification</mat-card-title>
-          <mat-card-subtitle>
-            @if(isEmailVerified){
-             Verified
-            }
-            @else{
-                Verification pending...
-            }
-          </mat-card-subtitle>
         </mat-card-header>
-        @if(!isEmailVerified){
+
+
+        <mat-card-content>
+          <span> Status : </span>
+          <span>
+            @if(_isEmailVerified){
+              Verified
+             }
+             @else{
+                 Verification pending...
+             }
+          </span>
+        </mat-card-content>
+
+
+
+
+        @if(!_isEmailVerified){
             <mat-card-actions align="end">
                 <button mat-button (click)="sendEmailForVerification()">Send verification email</button>
               </mat-card-actions>
