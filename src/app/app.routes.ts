@@ -87,7 +87,7 @@ export const routes: Routes = [
                 component:TaskHomeComponent
             },
             {
-                path:'task-new',
+                path:'new-task',
                 component:NewTaskComponent
             },
             {

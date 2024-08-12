@@ -1,1 +1,53 @@
-<p>new-task works!</p>
+<div>Task Creation</div>
+<mat-divider></mat-divider>
+
+
+<form [formGroup]="formGrp">
+
+    <div>
+        
+        <div class="row">
+
+            <mat-form-field class="example-form-field" appearance="outline">
+                <mat-label>Task Title</mat-label>
+                <input matInput type="text" formControlName="title">
+            </mat-form-field>
+
+            
+            <mat-form-field class="example-form-field" appearance="outline">
+                <mat-label>Short info</mat-label>
+                <input matInput type="text" formControlName="shortInfo">
+            </mat-form-field>
+
+        </div>
+
+
+
+        <mat-form-field [style.width]="'100%'" appearance="outline">
+            <mat-label>Task details</mat-label>
+            <textarea matInput formControlName="details"></textarea>
+        </mat-form-field>
+
+   
+        <div class="row">
+
+            <mat-form-field class="example-form-field" appearance="outline">
+                <mat-label>Start Date</mat-label>
+                <input matInput type="date" formControlName="startDate">
+            </mat-form-field>
+            
+            <mat-form-field class="example-form-field" appearance="outline">
+                <mat-label>Taget Date</mat-label>
+                <input matInput type="date" formControlName="targetDate">
+            </mat-form-field>
+
+        </div>
+
+    </div>
+
+    <div>
+        <button mat-flat-button mat-dialog-close>Cancel</button>
+        <button mat-flat-button cdkFocusInitial type="submit">Save</button>
+    </div>
+
+</form>
