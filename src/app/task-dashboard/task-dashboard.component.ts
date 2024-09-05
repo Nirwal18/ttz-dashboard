@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,5 +18,12 @@ import { RouterModule } from '@angular/router';
   styleUrl: './task-dashboard.component.css'
 })
 export class TaskDashboardComponent {
+
+  _location = inject(Location);
+
+
+  onBack(){
+    this._location.back()
+  }
 
 }
