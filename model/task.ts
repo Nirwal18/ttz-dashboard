@@ -1,7 +1,11 @@
 export class Task{
-    public name:string = "";
-    public info:string = "";
-    public details:string = "";
+   
 
-    constructor(){}
+    constructor(
+        public title:string = "",
+        public shortInfo:string = "",
+        public details:string = "",
+        public startDate="",
+        public targetDate=""
+    ){}
 }

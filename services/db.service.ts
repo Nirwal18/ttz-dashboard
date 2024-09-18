@@ -1,12 +1,13 @@
 import { Injectable, inject } from "@angular/core";
 import { FirebaseApp } from "@angular/fire/app";
-import { Firestore, FirestoreModule, collectionData } from "@angular/fire/firestore";
-import { DocumentData, DocumentReference, DocumentSnapshot, addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, setDoc } from "firebase/firestore";
+import { Firestore, FirestoreModule, collectionData, docData } from "@angular/fire/firestore";
+import { DocumentData, DocumentReference, DocumentSnapshot, addDoc, collection, deleteDoc, doc, documentId, getDoc, onSnapshot, orderBy, query, setDoc } from "firebase/firestore";
 import { Observable } from "rxjs";
 import { GreenGasData } from "../interface/greenGas.interface";
 import { SaleData } from "../interface/sale.interface";
 import { Site } from "../model/site";
 import { Customer } from "../interface/customer.interface";
+import { Task } from "../model/task";
 
 
 
@@ -146,6 +147,15 @@ export class DbService{
      deleteCustomer(customer:Customer){
         const ref = doc(this.db,this.DB_PATH.CUSTOMERS,customer.bp.toString() );
         return deleteDoc(ref);
+     }
+
+
+/**
+ * @brief add a task to cloud database
+ */
+     saveTask(task:Task){
+        const ref = doc(this.db,"Tasks","1");
+        return setDoc(ref,task);
      }
 
 }
