@@ -1,0 +1,16 @@
+#sideNave{
+    position:fixed;
+    height: 100%;
+    width: 200px;
+    border-right: 1px solid #c4c6d0;
+
+    mat-divider{
+        margin: 0px 10px;
+    }
+}
+
+#mainContainer{
+   
+    margin-left: 200px;
+    padding: 0px 10px;
+}

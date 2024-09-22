@@ -1,15 +1,61 @@
-
 <div id="task-menu">
-    <button mat-button routerLink="/tasks/new-task">Task Creation</button>
-    <button mat-button>Assing Task</button>
-    <button mat-button>Monitor Task</button>
-    <button mat-button>Tranfer Task</button>
-    <button mat-button>Reports</button>
+  <button mat-button routerLink="/tasks/new-task">Task Creation</button>
+  <button mat-button>Assing Task</button>
+  <button mat-button>Monitor Task</button>
+  <button mat-button>Tranfer Task</button>
+  <button mat-button>Reports</button>
 </div>
 
 <mat-divider></mat-divider>
 
+<!-- Side Panel for adding/displaing Projects -->
 
+<div id="sideNave">
+
+  <mat-nav-list>
+    <mat-list-item routerLink="/home/dashboard">
+      <mat-icon matListItemIcon>dashboard</mat-icon> <span>Dashboard</span>
+    </mat-list-item>
+    <mat-list-item routerLink="/home/customers">
+      <mat-icon matListItemIcon>supervisor_account</mat-icon> <span>Customer</span>
+    </mat-list-item>
+
+    <mat-list-item routerLink="/home/cng-stations">
+      <mat-icon matListItemIcon>supervisor_account</mat-icon> <span>CNG Staions</span>
+    </mat-list-item>
+  </mat-nav-list>
+
+
+  <mat-divider></mat-divider>
+
+  <!-- Auto fetch Project list  -->
+
+    <div mat-subheader><span>Projects</span> <button mat-icon-button (click)="addProject()"><mat-icon matListItemIcon>add</mat-icon></button>
+    </div>
+    @for (project of projects; track project) {
+    <mat-list-item>
+      <mat-icon matListItemIcon>folder</mat-icon>
+      <div matListItemTitle>{{project.name}}</div>
+    </mat-list-item>
+    }
+
+
+
+
+</div>
+
+<div id="mainContainer">
+ 
+  <div id="task-menu">
+    <button mat-flat-button routerLink="/tasks/new-task"><mat-icon>add</mat-icon>Add task</button>
+    <button mat-flat-button routerLink="/tasks/new-task"><mat-icon>filterAlt</mat-icon>Filter</button>
+    <button mat-flat-button routerLink="/tasks/new-task"><mat-icon>short_text</mat-icon>Short by</button>
+  </div>
+
+
+</div>
+
+<!-- 
 <h3>Pending tasks</h3>
 <mat-list>
   <mat-list-item>
@@ -40,4 +86,4 @@
     <span matListItemTitle>Title</span>
     Second line
   </mat-list-item>
-</mat-list>
+</mat-list> -->

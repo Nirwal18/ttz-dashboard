@@ -16,26 +16,26 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.authService.currentUserSig.set({email:this.authService.fireAuth.currentUser?.email!, userName:""});
-    this.authService.fireAuth.onAuthStateChanged({
-      next:(user)=>{
-        if(user!=null && user!= undefined){
-          this.authService.currentUserSig.set({
-            email: user?.email!,
-            userName:user?.displayName!
-        })
-       // console.log(user);
-        this.navigateToHomePage()
-        }
-        else{
-          this.router.navigate(["/auth/login"]);
-        }
+  //   this.authService.fireAuth.onAuthStateChanged({
+  //     next:(user)=>{
+  //       if(user!=null && user!= undefined){
+  //         this.authService.currentUserSig.set({
+  //           email: user?.email!,
+  //           userName:user?.displayName!
+  //       })
+  //      // console.log(user);
+  //       this.navigateToHomePage()
+  //       }
+  //       else{
+  //         this.router.navigate(["/auth/login"]);
+  //       }
         
-      },
-      complete:()=>{},
-      error:()=>{
-          this.authService.currentUserSig.set(null)
-      }
-  });
+  //     },
+  //     complete:()=>{},
+  //     error:()=>{
+  //         this.authService.currentUserSig.set(null)
+  //     }
+  // });
 
   // if(this.authService.currentUserSig()!=null||this.authService.currentUserSig()!=undefined && this.authService.currentUserSig()?.email.length!>5){
   //   //this.navigateToHomePage()
